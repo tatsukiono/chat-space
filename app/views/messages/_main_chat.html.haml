@@ -10,11 +10,7 @@
         %p.group-header__edit-btn Edit
 
   .group-messages
-    .main-content
-      .main-content__header
-        %p.main-content__header__name masa
-        %p.main-content__header__date 2019/11/20(web) 17:43:01
-      %p.main-content__message あはよう
+    = render @messages
   .form
     = form_for [@group, @message] do |f|
       .new-message
