@@ -16,11 +16,11 @@
         %p.main-content__header__date 2019/11/20(web) 17:43:01
       %p.main-content__message あはよう
   .form
-    .new-message
-      = form_for [@group, @message] do |f|
+    = form_for [@group, @message] do |f|
+      .new-message
         .input-box
           = f.text_field :content, class: 'input-box__text', placeholder: 'type a message'
           = f.label :image, class: 'input-box__image' do
             = icon('fas', 'image')
             = f.file_field :image, class: 'input-box__image__file'
-        =f.submit 'Send', class: 'input-btn'
+        = f.submit 'Send', class: 'input-btn'
