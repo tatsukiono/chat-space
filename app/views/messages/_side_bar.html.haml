@@ -4,12 +4,14 @@
       %h3.top-items__user-name
         = current_user.name
       %ul.top-items__icons
-        = link_to "#", class: "top-items__icons__edit" do
+        = link_to new_group_path, class: "top-items__icons__edit" do
           %li= icon('far fa-edit',"top-items__icons__edit")
         = link_to edit_user_path(current_user), class: "top-items__icons__cog" do
           %li= icon('fas fa-cog', "top-items__icons__cog")
   .groups
-    = link_to "#", class: "group-list__btn" do
-      .group-list
-        %p.group-list__name techcamp
-        %p.group-list__message まだメッセージがありません
+    - current_user.groups.each do |group|
+      = link_to "#", class: "group-list__btn" do
+        .group-list
+          %p.group-list__name
+            = group.name
+          %p.group-list__message まだメッセージがありません
