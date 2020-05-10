@@ -1,25 +1,25 @@
 .main-chat
   .group-header
     .group-header__info-left
-      %p.group-header__name test
+      %p.group-header__name
+        = @group.name
       %ul.group-header__menbers
-        %p.group-header__menbers__title Menber : 
-        %li.group-header__menbers__menber masa
+        %p.group-header__menbers__title Menber :
+        - @group.users.each do |user|
+          %li.group-header__menbers__menber
+            = user.name
     .group-header__info-right
-      = link_to "#", class: "group-header__edit" do
+      = link_to edit_group_path(@group), class: "group-header__edit" do
         %p.group-header__edit-btn Edit
 
   .group-messages
-    .main-content
-      .main-content__header
-        %p.main-content__header__name masa
-        %p.main-content__header__date 2019/11/20(web) 17:43:01
-      %p.main-content__message あはよう
+    = render @messages
   .form
-    %form.new-message
-      .input-box
-        %input{type: "text", class: "input-box__text", placeholder: "type a message" }
-        %label{class: "input-box__image"}
-          = icon('fas', 'image')
-          %input{type: "file", class: "input-box__image__file"}
-      %input.input-btn{type: "submit", value: "Send"}
+    = form_for [@group, @message] do |f|
+      .new-message
+        .input-box
+          = f.text_field :content, class: 'input-box__text', placeholder: 'type a message'
+          = f.label :image, class: 'input-box__image' do
+            = icon('fas', 'image')
+            = f.file_field :image, class: 'input-box__image__file'
+        = f.submit 'Send', class: 'input-btn'
