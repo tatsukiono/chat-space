@@ -104,6 +104,7 @@
   .group-messages{
     height: calc(100vh - 100px - 90px);
     background-color: #fafafa;
+    overflow: scroll;
     .main-content{
       padding: 35px 0 46px;
       padding-left: 40px;
